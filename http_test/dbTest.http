@@ -1,0 +1,28 @@
+GET http://localhost:8080/user
+
+###
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "kakaoId" : "kone",
+  "pw" : "a123456789"
+}
+
+###
+PUT http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "kakaoId" : "kone",
+  "pw" : "abcd"
+}
+
+###
+GET http://localhost:8080/user/kone
+
+###
+DELETE http://localhost:8080/user
+Content-Type: text/plain
+
+kone

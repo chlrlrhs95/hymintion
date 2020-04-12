@@ -1,5 +1,6 @@
 package kr.ac.hanyang.hyminton.hyminton
 
+import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -10,6 +11,7 @@ import org.springframework.boot.runApplication
  */
 
 @SpringBootApplication
+@MapperScan(basePackages = ["kr.ac.hanyang.hyminton.hyminton"])
 class HymintonApplication
 
 fun main(args: Array<String>) {
