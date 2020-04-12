@@ -57,6 +57,7 @@ https://hyun-i.jetbrains.space/p/hyminton/checklists
 2. `cd Server`
 3.  maven import (`pom.xml`)
     - IntelliJ 사용 시 `pom.xml` 우클릭 > maven > Reimport
+    - Goorm IDE 사용 시 `pom.xml` 우클릭 > Import (Maven)
 4. 개발자 세팅
     - 코드의 작성자를 명시하기 위해 자신이 생성한 파일에 개발자 명시
     - 이후 수정 과정은 별도 명시 없이 git 을 통해 확인
