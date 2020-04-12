@@ -77,4 +77,7 @@ https://hyun-i.jetbrains.space/p/hyminton/checklists
            ```
         4. OK 클릭
 ## 실행
-1. HymintonApplication.kt 의 main() 함수 실행
+- IntelliJ 사용 시 HymintonApplication.kt 의 main() 함수 실행
+- Goorm IDE 사용 시 터미널에서 `mvn spring-boot:run` 실행
+---
+- Spring 로고가 뜨고 `Started HymintonApplicationKt in 3.564 seconds (JVM running for 4.721)` 이 출력되면 성공
