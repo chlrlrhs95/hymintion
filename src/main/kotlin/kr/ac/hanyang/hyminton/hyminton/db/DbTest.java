@@ -22,20 +22,15 @@ public class DbTest {
         return userDao.selectAllUser();
     }
     @GetMapping("/user/{kakaoId}")
-    public User getOne(@PathVariable("kakaoId") String kakaoId) {
+    public User getOne(@PathVariable("kakaoId") int kakaoId) {
         return userDao.selectUser(kakaoId);
-    }
-    @DeleteMapping("/user")
-    public int deleteOne(@RequestBody String kakaoId){
-        return userDao.deleteUser(kakaoId);
-    }
-    @PutMapping("/user")
-    public int putOne(@RequestBody User user){
-        return userDao.updateUser(user);
     }
     @PostMapping("/user")
     public int postOne(@RequestBody User user){
         return userDao.insertUser(user);
     }
-
+    @PutMapping("/user")
+    public int updateUser(@RequestBody User user) {
+        return userDao.updateUser(user);
+    }
 }
