@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface UserDao {
-    @Insert("INSERT INTO users VALUES(#{kakaoId},#{name},#{university},#{department},#{major},#{studentId},#{joinDate},#{joinType},#{type})")
+    @Insert("INSERT INTO users VALUES(#{kakaoId},#{name},#{university},#{department},#{major},#{studentId},#{joinMonth},#{joinType},#{type})")
     int insertUser(User user);
 
     @Select("SELECT * FROM users WHERE kakao_id=#{kakaoId}")
@@ -49,8 +49,8 @@ public interface UserDao {
             "student_id = #{studentId}, " +
             "</if>" +
 
-            "<if test='joinDate != null'>" +
-            "join_date = #{joinDate}, " +
+            "<if test='joinMonth != null'>" +
+            "join_month = #{joinMonth}, " +
             "</if>" +
 
             "<if test='joinType != null'>" +

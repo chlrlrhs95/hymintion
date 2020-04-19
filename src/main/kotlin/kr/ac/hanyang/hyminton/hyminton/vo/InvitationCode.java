@@ -11,12 +11,16 @@ import lombok.Data;
 @Data
 public class InvitationCode {
     private String code;
-    private String memo;
+    private String name;
+    private String joinMonth;
+    private String joinType;
 
     public InvitationCode() {}
 
-    public InvitationCode(String code, String memo) {
+    public InvitationCode(String code, String name, String joinMonth, String joinType) {
         this.code = code;
-        this.memo = memo;
+        this.name = name;
+        this.joinMonth = joinMonth;
+        this.joinType = joinType;
     }
 }

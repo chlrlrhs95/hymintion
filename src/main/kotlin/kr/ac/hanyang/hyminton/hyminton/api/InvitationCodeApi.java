@@ -29,10 +29,9 @@ public class InvitationCodeApi {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    String addInvitationCode(@RequestBody(required = false) String memo) {
-        if (memo == null) memo = "";
+    String addInvitationCode(@RequestBody InvitationCode invitationCode) {
         String code = generateRandomCode();
-        InvitationCode invitationCode = new InvitationCode(code, memo);
+        invitationCode.setCode(code);
         invitationCodeDao.insertInvitationCode(invitationCode);
         return code;
     }
@@ -49,13 +48,6 @@ public class InvitationCodeApi {
         int result = invitationCodeDao.deleteInvitationCode(code);
         if (result == 0) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    ResponseEntity<Void> updateInvitationCode(@RequestBody InvitationCode invitationCode) {
-        int result = invitationCodeDao.updateInvitationCode(invitationCode);
-        if (result == 1) return ResponseEntity.ok().build();
-        else return ResponseEntity.notFound().build();
     }
 
     private String generateRandomCode() {

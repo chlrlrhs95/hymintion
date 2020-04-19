@@ -16,7 +16,7 @@ public class User {
     private String department;
     private String major;
     private String studentId;
-    private long joinDate;
+    private String joinMonth;
     private String joinType;
     private int type = -1;
 }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Mapper
 public interface InvitationCodeDao {
-    @Insert("INSERT INTO invitation_code VALUES(#{code}, #{memo})")
+    @Insert("INSERT INTO invitation_code VALUES(#{code}, #{name}, #{joinMonth}, #{joinType})")
     void insertInvitationCode(InvitationCode invitationCode);
 
     @Select("SELECT * FROM invitation_code")
@@ -24,7 +24,4 @@ public interface InvitationCodeDao {
 
     @Delete("DELETE FROM invitation_code WHERE code=#{code}")
     int deleteInvitationCode(String code);
-
-    @Update("UPDATE invitation_code SET memo=#{memo} WHERE code=#{code}")
-    int updateInvitationCode(InvitationCode invitationCode);
 }
