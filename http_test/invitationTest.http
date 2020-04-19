@@ -3,11 +3,7 @@ GET http://localhost:8080/api/invitation
 ###
 
 POST http://localhost:8080/api/invitation
-Content-Type: application/json
 
-{
-  "code": "5437",
-  "memo": "정석원"
-}
+김도희
 
 ###

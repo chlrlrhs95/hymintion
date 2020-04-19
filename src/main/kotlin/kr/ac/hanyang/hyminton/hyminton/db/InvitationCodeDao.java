@@ -2,9 +2,7 @@ package kr.ac.hanyang.hyminton.hyminton.db;
 
 import kr.ac.hanyang.hyminton.hyminton.vo.InvitationCode;
 import org.apache.ibatis.annotations.*;
-import org.springframework.dao.DuplicateKeyException;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -16,8 +14,7 @@ import java.util.List;
 @Mapper
 public interface InvitationCodeDao {
     @Insert("INSERT INTO invitation_code VALUES(#{code}, #{memo})")
-    void insertInvitationCode(InvitationCode invitationCode)
-            throws DuplicateKeyException;
+    void insertInvitationCode(InvitationCode invitationCode);
 
     @Select("SELECT * FROM invitation_code")
     List<InvitationCode> selectAllInvitationCodes();

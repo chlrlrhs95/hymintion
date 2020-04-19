@@ -12,4 +12,11 @@ import lombok.Data;
 public class InvitationCode {
     private String code;
     private String memo;
+
+    public InvitationCode() {}
+
+    public InvitationCode(String code, String memo) {
+        this.code = code;
+        this.memo = memo;
+    }
 }

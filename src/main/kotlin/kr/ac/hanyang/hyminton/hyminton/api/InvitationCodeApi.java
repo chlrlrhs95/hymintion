@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * kr.ac.hanyang.hyminton.hyminton.api.InvitationCodeApi
@@ -21,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class InvitationCodeApi {
     private final InvitationCodeDao invitationCodeDao;
+    private final Random random;
 
     @RequestMapping(method = RequestMethod.GET)
     List<InvitationCode> getAllInvitationCodes() {
@@ -28,16 +30,11 @@ public class InvitationCodeApi {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    ResponseEntity<String> addInvitationCode(@RequestBody InvitationCode invitationCode) {
-        try {
-            invitationCodeDao.insertInvitationCode(invitationCode);
-            return ResponseEntity.ok().build();
-        } catch (DuplicateKeyException e) {
-            return ResponseEntity.badRequest().body("Code already exists");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Unknown error");
-        }
+    String addInvitationCode(@RequestBody String memo) {
+        String code = generateRandomCode();
+        InvitationCode invitationCode = new InvitationCode(code, memo);
+        invitationCodeDao.insertInvitationCode(invitationCode);
+        return code;
     }
 
     @RequestMapping(value = "/{code}", method = RequestMethod.GET)
@@ -58,5 +55,22 @@ public class InvitationCodeApi {
         int result = invitationCodeDao.updateInvitationCode(invitationCode);
         if (result == 1) return ResponseEntity.ok().build();
         else return ResponseEntity.notFound().build();
+    }
+
+    private String generateRandomCode() {
+        while (true) {
+            String code = generateValidCode();
+            InvitationCode invitationCode = invitationCodeDao.selectInvitationCode(code);
+            if (invitationCode == null) return code;
+        }
+    }
+
+    private String generateValidCode() {
+        StringBuilder codeBuilder = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            int r = random.nextInt(10);
+            codeBuilder.append(r);
+        }
+        return codeBuilder.toString();
     }
 }
