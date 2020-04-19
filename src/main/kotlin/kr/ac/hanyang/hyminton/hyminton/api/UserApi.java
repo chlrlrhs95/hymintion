@@ -32,11 +32,6 @@ public class UserApi {
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public int postOne(@RequestBody User user) {
-        return userDao.insertUser(user);
-    }
-
     @RequestMapping(method = RequestMethod.PUT)
     public int updateUser(@RequestBody User user) {
         return userDao.updateUser(user);
