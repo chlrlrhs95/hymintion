@@ -4,6 +4,4 @@ GET http://localhost:8080/api/invitation
 
 POST http://localhost:8080/api/invitation
 
-김도희
-
 ###

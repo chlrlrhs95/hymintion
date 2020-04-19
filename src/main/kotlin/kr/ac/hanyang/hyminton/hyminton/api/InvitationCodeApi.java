@@ -30,7 +30,8 @@ public class InvitationCodeApi {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    String addInvitationCode(@RequestBody String memo) {
+    String addInvitationCode(@RequestBody(required = false) String memo) {
+        if (memo == null) memo = "";
         String code = generateRandomCode();
         InvitationCode invitationCode = new InvitationCode(code, memo);
         invitationCodeDao.insertInvitationCode(invitationCode);
