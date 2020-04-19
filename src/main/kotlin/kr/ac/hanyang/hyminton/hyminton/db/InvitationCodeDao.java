@@ -23,7 +23,7 @@ public interface InvitationCodeDao {
     InvitationCode selectInvitationCode(String code);
 
     @Delete("DELETE FROM invitation_code WHERE code=#{code}")
-    void deleteInvitationCode(String code);
+    int deleteInvitationCode(String code);
 
     @Update("UPDATE invitation_code SET memo=#{memo} WHERE code=#{code}")
     int updateInvitationCode(InvitationCode invitationCode);

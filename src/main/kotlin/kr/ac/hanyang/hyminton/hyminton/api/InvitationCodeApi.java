@@ -3,7 +3,6 @@ package kr.ac.hanyang.hyminton.hyminton.api;
 import kr.ac.hanyang.hyminton.hyminton.db.InvitationCodeDao;
 import kr.ac.hanyang.hyminton.hyminton.vo.InvitationCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,9 +44,10 @@ public class InvitationCodeApi {
         return ResponseEntity.of(invitationCode);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteInvitationCode(@RequestBody String code) {
-        invitationCodeDao.deleteInvitationCode(code);
+    @RequestMapping(value = "/{code}", method = RequestMethod.DELETE)
+    ResponseEntity<Void> deleteInvitationCode(@PathVariable String code) {
+        int result = invitationCodeDao.deleteInvitationCode(code);
+        if (result == 0) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }
 
