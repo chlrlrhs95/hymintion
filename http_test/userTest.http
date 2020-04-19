@@ -1,7 +1,7 @@
-GET http://localhost:8080/user
+GET http://localhost:8080/api/user
 
 ###
-POST http://localhost:8080/user
+POST http://localhost:8080/api/user
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/user
+PUT http://localhost:8080/api/user
 Content-Type: application/json
 
 {
@@ -27,10 +27,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/user/123456789
+GET http://localhost:8080/api/user/123456789
 
 ###
-DELETE http://localhost:8080/user
+DELETE http://localhost:8080/api/user
 Content-Type: text/plain
 
 123456789
