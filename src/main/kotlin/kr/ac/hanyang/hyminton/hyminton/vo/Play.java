@@ -15,8 +15,8 @@ public class Play {
     private String type;
     private long start;
     private long end;
-    private long expires;
-    private int limit;
+    private long expires = -1;
+    private int limit = -1;
 
     private int participants;
     private Location locationDetails;

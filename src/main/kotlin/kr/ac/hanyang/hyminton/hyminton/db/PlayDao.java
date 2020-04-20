@@ -4,6 +4,7 @@ import kr.ac.hanyang.hyminton.hyminton.vo.Play;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -24,4 +25,38 @@ public interface PlayDao {
 
     @Select("SELECT * FROM plays WHERE id=#{id}")
     Play selectPlay(int id);
+
+    @Update("<script>" +
+            "UPDATE plays " +
+            "SET " +
+
+            "<if test='location != null'>" +
+            "location = #{location}, " +
+            "</if>" +
+
+            "<if test='type != null'>" +
+            "type = #{type}, " +
+            "</if>" +
+
+            "<if test='start != 0'>" +
+            "start = #{start}, " +
+            "</if>" +
+
+            "<if test='end != 0'>" +
+            "end = #{end}, " +
+            "</if>" +
+
+            "<if test='expires != -1'>" +
+            "expires = #{expires}, " +
+            "</if>" +
+
+            "<if test='limit != -1'>" +
+            "limit = #{limit}, " +
+            "</if>" +
+
+            "id = #{id} " +
+
+            "WHERE id = #{id}" +
+            "</script>")
+    int updatePlay(Play play);
 }

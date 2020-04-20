@@ -8,6 +8,7 @@ import kr.ac.hanyang.hyminton.hyminton.vo.Location;
 import kr.ac.hanyang.hyminton.hyminton.vo.Participate;
 import kr.ac.hanyang.hyminton.hyminton.vo.Play;
 import kr.ac.hanyang.hyminton.hyminton.vo.User;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,14 @@ public class PlayApi {
                 .collect(Collectors.toList());
     }
 
+    @RequestMapping(value = "/expire", method = RequestMethod.POST, consumes = "application/json")
+    int expirePlay(@RequestBody ExpireRequestBody body) {
+        Play play = new Play();
+        play.setId(body.playId);
+        play.setExpires(body.expires);
+        return playDao.updatePlay(play);
+    }
+
     @RequestMapping(value = "/participate", method = RequestMethod.POST)
     int participate(@RequestBody Participate participate) {
         return participateDao.insertParticipate(participate);
@@ -76,5 +85,11 @@ public class PlayApi {
     @RequestMapping(value = "/participate/{playId}/{userId}", method = RequestMethod.GET)
     boolean checkIfUserParticipated(@PathVariable int playId, @PathVariable int userId) {
         return participateDao.checkParticipate(playId, userId) == 1;
+    }
+
+    @Data
+    static class ExpireRequestBody {
+        int playId;
+        long expires;
     }
 }
