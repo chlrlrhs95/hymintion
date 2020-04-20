@@ -17,5 +17,7 @@ public class Play {
     private long end;
     private long expires;
     private int limit;
+
+    private int participants;
     private Location locationDetails;
 }

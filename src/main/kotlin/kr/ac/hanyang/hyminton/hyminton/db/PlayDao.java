@@ -21,4 +21,7 @@ public interface PlayDao {
 
     @Select("SELECT * FROM plays")
     List<Play> selectPlays();
+
+    @Select("SELECT * FROM plays WHERE id=#{id}")
+    Play selectPlay(int id);
 }
