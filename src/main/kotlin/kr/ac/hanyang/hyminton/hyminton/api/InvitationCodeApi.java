@@ -1,6 +1,7 @@
 package kr.ac.hanyang.hyminton.hyminton.api;
 
 import kr.ac.hanyang.hyminton.hyminton.db.InvitationCodeDao;
+import kr.ac.hanyang.hyminton.hyminton.services.RandomService;
 import kr.ac.hanyang.hyminton.hyminton.vo.InvitationCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 /**
  * kr.ac.hanyang.hyminton.hyminton.api.InvitationCodeApi
@@ -21,7 +21,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class InvitationCodeApi {
     private final InvitationCodeDao invitationCodeDao;
-    private final Random random;
+    private final RandomService random;
 
     @RequestMapping(method = RequestMethod.GET)
     List<InvitationCode> getAllInvitationCodes() {
@@ -30,7 +30,7 @@ public class InvitationCodeApi {
 
     @RequestMapping(method = RequestMethod.POST)
     String addInvitationCode(@RequestBody InvitationCode invitationCode) {
-        String code = generateRandomCode();
+        String code = generateValidCode();
         invitationCode.setCode(code);
         invitationCodeDao.insertInvitationCode(invitationCode);
         return code;
@@ -50,20 +50,11 @@ public class InvitationCodeApi {
         return ResponseEntity.ok().build();
     }
 
-    private String generateRandomCode() {
+    private String generateValidCode() {
         while (true) {
-            String code = generateValidCode();
+            String code = random.generateRandomCode(6);
             InvitationCode invitationCode = invitationCodeDao.selectInvitationCode(code);
             if (invitationCode == null) return code;
         }
-    }
-
-    private String generateValidCode() {
-        StringBuilder codeBuilder = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
-            int r = random.nextInt(10);
-            codeBuilder.append(r);
-        }
-        return codeBuilder.toString();
     }
 }
