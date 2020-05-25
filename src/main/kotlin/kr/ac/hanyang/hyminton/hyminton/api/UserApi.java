@@ -10,9 +10,9 @@ import java.util.List;
 
 /**
  * kr.ac.hanyang.hyminton.hyminton.api.UserApi
- * Created by HyunI Kim.
- * Date: 2020-04-19
- * Email: jbhyunikim@gmail.com
+ * Author: 최기곤
+ * Date  : 2020-04-12
+ * Email : chlrlrhs95@gmail.com
  */
 @RestController
 @RequestMapping("/api/user")
